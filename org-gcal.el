@@ -401,7 +401,8 @@ CALENDAR-ID-FILE is a cons in ‘org-gcal-fetch-file-alist’, for which see."
    :params
    (append
     `(("access_token" . ,(org-gcal--get-access-token))
-      ("singleEvents" . "True"))
+      ("singleEvents" . "True")
+      ("timeZone" .  "America/New_York"))
     (seq-let [expires sync-token]
         ;; Ensure ‘org-gcal--sync-tokens-get’ return value is actually a list
         ;; before passing to ‘seq-let’.
@@ -434,6 +435,7 @@ CALENDAR-ID-FILE is a cons in ‘org-gcal-fetch-file-alist’, for which see."
    (append
     `(("access_token" . ,(org-gcal--get-access-token))
       ("timeMin" . ,(org-gcal--format-time2iso up-time))
+      ("timeZone" .  "America/New_York")
       ("timeMax" . ,(org-gcal--format-time2iso down-time)))
     (when page-token `(("pageToken" . ,page-token))))
    :parser 'org-gcal--json-read))
